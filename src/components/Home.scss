@@ -307,16 +307,31 @@
             .device-box {
               padding-top: 50px;
               padding: 20px 30px;
+              display: flex;
+
+              .device-item {
+                flex: 1;
+
+                &:nth-child(1) {
+                  padding-right: 14px;
+                }
+
+                &:nth-child(2) {
+                  padding-left: 14px;
+                }
+              }
 
               .device-state {
                 display: flex;
-                justify-content: center;
+                justify-content: left;
                 align-items: center;
-                padding-bottom: 10px;
-
+                padding: 8px 0;
+                &:last-child{
+                  padding-bottom: 0px;
+                }
                 span {
                   flex: 1;
-                  font-size: 26px;
+                  font-size: 24px;
                   font-family: Microsoft YaHei;
                   font-weight: 400;
                   color: #fff;
@@ -340,8 +355,8 @@
                 }
 
                 img {
-                  width: 60px;
-                  height: 60px;
+                  width: 50px;
+                  height: 50px;
                   border-radius: 50%;
                 }
               }
@@ -445,8 +460,8 @@
               position: relative;
               width: 100%;
               height: 100%;
-              background: url("../assets/images/display/demo.png") -140px 20px no-repeat;
-              background-size: 398px 294px;
+              background: url("../assets/images/display/demo.png") center center no-repeat;
+              background-size: 78% 78%;
 
               .cover {
                 position: absolute;
@@ -476,30 +491,84 @@
             background: url("../assets/images/display/bg-feature.png") center center no-repeat;
             background-size: 100% 100%;
 
-            .device-status {
-              position: relative;
-              width: 100%;
-              height: 100%;
-              background: url("../assets/images/display/demo3.png") center 30px no-repeat;
-              background-size: 421px 244px;
+            // .device-status {
+            //   position: relative;
+            //   width: 100%;
+            //   height: 100%;
+            //   background: url("../assets/images/display/demo3.png") center 30px no-repeat;
+            //   background-size: 421px 244px;
 
-              i {
-                position: absolute;
-                left: 152px;
-                top: 80px;
-                z-index: 10;
-                width: 44px;
-                height: 72px;
-                background: url("../assets/images/display/icon-water.png") center center no-repeat;
-                background-size: 100% 100%;
-                animation-name: mychange2;
-                /*动画的名字*/
-                animation-duration: 1000ms;
-                /*定义动画完成一个周期所需要的时间，以秒或毫秒计*/
-                animation-iteration-count: infinite;
-                /*定义动画的播放次数，这里是无限播放*/
-                animation-direction: alternate;
-                /*定义是否应该轮流反向播放动画，这里是动画轮流播放*/
+            //   i {
+            //     position: absolute;
+            //     left: 152px;
+            //     top: 80px;
+            //     z-index: 10;
+            //     width: 44px;
+            //     height: 72px;
+            //     background: url("../assets/images/display/icon-water.png") center center no-repeat;
+            //     background-size: 100% 100%;
+            //     animation-name: mychange2;
+            //     /*动画的名字*/
+            //     animation-duration: 1000ms;
+            //     /*定义动画完成一个周期所需要的时间，以秒或毫秒计*/
+            //     animation-iteration-count: infinite;
+            //     /*定义动画的播放次数，这里是无限播放*/
+            //     animation-direction: alternate;
+            //     /*定义是否应该轮流反向播放动画，这里是动画轮流播放*/
+            //   }
+            // }
+            .device-status {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              padding-top: 40px;
+
+              .img-box {
+                position: relative;
+
+                &>img {
+                  width: 180px;
+                  height: auto;
+                  margin-right: 30px;
+                }
+
+                i {
+                  position: absolute;
+                  left: 64px;
+                  top: 48px;
+                  z-index: 10;
+                  width: 48px;
+                  height: 80px;
+                  background: url("../assets/images/display/icon-water.png") center center no-repeat;
+                  background-size: 100% 100%;
+                  animation-name: mychange2;
+                  /*动画的名字*/
+                  animation-duration: 1000ms;
+                  /*定义动画完成一个周期所需要的时间，以秒或毫秒计*/
+                  animation-iteration-count: infinite;
+                  /*定义动画的播放次数，这里是无限播放*/
+                  animation-direction: alternate;
+                  /*定义是否应该轮流反向播放动画，这里是动画轮流播放*/
+                }
+              }
+
+              .status-item {
+                padding: 10px 0;
+              }
+
+              h6 {
+                font-size: 20px;
+                font-weight: 600;
+                color: #FFFFFF;
+                line-height: 24px;
+                padding-bottom: 4px;
+              }
+
+              p {
+                font-size: 26px;
+                font-weight: 600;
+                color: #FFFFFF;
+                line-height: 30px;
               }
             }
           }
@@ -1080,7 +1149,7 @@
   }
 
   .config {
-    padding-top: 20px;
+    padding-top: 36px;
 
     &.config2 {
       padding-left: 33%;
@@ -1175,6 +1244,14 @@
       .config-item {
         flex: 1;
         text-align: center;
+      }
+
+      .flex {
+        display: flex;
+
+        &>div {
+          padding: 0 12px;
+        }
       }
 
       h6 {

@@ -106,93 +106,6 @@
             </div>
           </div> -->
         </div>
-        <div class="rain" v-if="loginInfo.status === 3.1 && false">
-          <div class="top">
-            <div class="left">
-              <h5>水池水量</h5>
-              <div class="liquid-fill liquid-fill2">
-                <ve-liquidfill
-                  width="100%"
-                  height="100%"
-                  radius="100%"
-                  :data="chartData2"
-                  :settings="chartSettings2"
-                ></ve-liquidfill>
-              </div>
-              <div class="liquid-fill liquid-fill2">
-                <ve-liquidfill
-                  width="100%"
-                  height="100%"
-                  radius="100%"
-                  :data="chartData"
-                  :settings="chartSettings"
-                ></ve-liquidfill>
-              </div>
-              <div class="liquid-info" v-if="swtchInfo">
-                <span>调蓄池液位：{{ swtchInfo.liquidLevel }}</span>
-                <span>清水池液位：{{ swtchInfo.liquidLevel2 }}</span>
-                <span>涌泉池液位：{{ swtchInfo.liquidLevel3 }}</span>
-              </div>
-            </div>
-            <div class="right">
-              <h5>雨水回收</h5>
-              <div class="btn-box">
-                <i
-                  :class="{ active: ownerConfigPageStatus['V1000.4'] }"
-                  @click="remoteWritingList('V1000.4', 1)"
-                  >绿化浇灌</i
-                >
-                <i
-                  :class="{ active: ownerConfigPageStatus['V1000.6'] }"
-                  @click="remoteWritingList('V1000.6', 1)"
-                  >场地冲洗</i
-                >
-              </div>
-              <div class="btn-box">
-                <i
-                  :class="{ active: ownerConfigPageStatus['V1000.5'] }"
-                  @click="remoteWritingList('V1000.5', 1)"
-                  >雨水洗车</i
-                >
-                <i
-                  :class="{ active: ownerConfigPageStatus['V1000.7'] }"
-                  @click="remoteWritingList('V1000.7', 1)"
-                  >景观补水</i
-                >
-              </div>
-              <div class="btn-box">
-                <i class="stop" @click="stopRainBack">停止</i>
-              </div>
-            </div>
-          </div>
-          <div class="bottom">
-            <div class="left">
-              <h5>水质检测</h5>
-              <div class="btn-box">
-                <i
-                  :class="{ active: ownerConfigPageStatus['V1002.6'] }"
-                  @click="remoteWritingList('V1002.6', 1)"
-                  >一键反冲洗</i
-                >
-                <i
-                  :class="{ active: ownerConfigPageStatus['V1002.7'] }"
-                  @click="remoteWritingList('V1002.7', 1)"
-                  >一键调蓄排空</i
-                >
-              </div>
-              <div class="btn-box">
-                <i class="stop" @click="stopWaterCheck">停止</i>
-                <i @click="goToConfig">配置参数</i>
-              </div>
-            </div>
-            <div class="right">
-              <h5>设备状态</h5>
-              <div class="device-status">
-                <i></i>
-              </div>
-            </div>
-          </div>
-        </div>
         <div class="rain2" v-if="loginInfo.status === 3.1">
           <div class="left">
             <h5>水池水量</h5>
@@ -273,7 +186,7 @@
                     <i
                       :class="{ active: ownerConfigPageStatus['V1002.7'] }"
                       @click="remoteWritingList('V1002.7', 1)"
-                      >一键调蓄排空</i
+                      >一键水利用</i
                     >
                   </div>
                   <div class="btn-box">
@@ -354,71 +267,152 @@
             <div class="right">
               <h5>设别设施状态</h5>
               <div class="device-box">
-                <div class="device-state">
-                  <span>回用泵</span>
-                  <strong v-if="swtchInfo.reusePumpOperation">运行</strong>
-                  <strong class="error" v-else-if="swtchInfo.error1"
-                    >故障</strong
-                  >
-                  <strong v-else>停机</strong>
-                  <img
-                    v-if="swtchInfo.reusePumpOperation"
-                    src="../assets/images/config/btn2-active.gif"
-                    alt=""
-                  />
-                  <img
-                    v-else
-                    src="../assets/images/config/btn-closed.png"
-                    alt=""
-                  />
+                <div class="device-item">
+                  <div class="device-state">
+                    <span>清水池回用泵</span>
+                    <strong v-if="swtchInfo.reusePumpOperation">运行</strong>
+                    <strong class="error" v-else-if="swtchInfo.error1"
+                      >故障</strong
+                    >
+                    <strong v-else>停机</strong>
+                    <img
+                      v-if="swtchInfo.reusePumpOperation"
+                      src="../assets/images/config/btn2-active.gif"
+                      alt=""
+                    />
+                    <img
+                      v-else
+                      src="../assets/images/config/btn-closed.png"
+                      alt=""
+                    />
+                  </div>
+                  <div class="device-state">
+                    <span>清水池提升泵</span>
+                    <strong v-if="swtchInfo.reusePumpOperation8">运行</strong>
+                    <strong class="error" v-else-if="swtchInfo.error8"
+                      >故障</strong
+                    >
+                    <strong v-else>停机</strong>
+                    <img
+                      v-if="swtchInfo.reusePumpOperation8"
+                      src="../assets/images/config/btn2-active.gif"
+                      alt=""
+                    />
+                    <img
+                      v-else
+                      src="../assets/images/config/btn-closed.png"
+                      alt=""
+                    />
+                  </div>
+                  <div class="device-state">
+                    <span>调蓄池回用泵</span>
+                    <strong v-if="swtchInfo.reusePumpOperation9">运行</strong>
+                    <strong class="error" v-else-if="swtchInfo.error9"
+                      >故障</strong
+                    >
+                    <strong v-else>停机</strong>
+                    <img
+                      v-if="swtchInfo.reusePumpOperation9"
+                      src="../assets/images/config/btn2-active.gif"
+                      alt=""
+                    />
+                    <img
+                      v-else
+                      src="../assets/images/config/btn-closed.png"
+                      alt=""
+                    />
+                  </div>
+                  <div class="device-state">
+                    <span>调蓄池排空泵</span>
+                    <strong v-if="swtchInfo.reusePumpOperation2">运行</strong>
+                    <strong class="error" v-else-if="swtchInfo.error2"
+                      >故障</strong
+                    >
+                    <strong v-else>停机</strong>
+                    <img
+                      v-if="swtchInfo.reusePumpOperation2"
+                      src="../assets/images/config/btn2-active.gif"
+                      alt=""
+                    />
+                    <img
+                      v-else
+                      src="../assets/images/config/btn-closed.png"
+                      alt=""
+                    />
+                  </div>
                 </div>
-                <div class="device-state">
-                  <span>调蓄泵</span>
-                  <strong v-if="swtchInfo.reusePumpOperation6">运行</strong>
-                  <strong class="error" v-else-if="swtchInfo.error5"
-                    >故障</strong
-                  >
-                  <strong v-else>停机</strong>
-                  <img
-                    v-if="swtchInfo.reusePumpOperation6"
-                    src="../assets/images/config/btn2-active.gif"
-                    alt=""
-                  />
-                  <img
-                    v-else
-                    src="../assets/images/config/btn-closed.png"
-                    alt=""
-                  />
-                </div>
-                <div class="device-state">
-                  <span>过滤器</span>
-                  <strong v-if="swtchInfo.reusePumpOperation3">运行</strong>
-                  <strong v-else>停机</strong>
-                  <img
-                    v-if="swtchInfo.reusePumpOperation3"
-                    src="../assets/images/config/btn2-active.gif"
-                    alt=""
-                  />
-                  <img
-                    v-else
-                    src="../assets/images/config/btn-closed.png"
-                    alt=""
-                  />
-                </div>
-                <div class="device-state">
-                  <span>消毒器</span>
-                  <strong v-if="swtchInfo.reusePumpOperation7">运行</strong>
-                  <strong v-else>停机</strong>
-                  <img
-                    v-if="swtchInfo.reusePumpOperation7"
-                    src="../assets/images/config/btn2-active.gif"
-                    alt=""
-                  />
-                  <img
-                    v-else
-                    src="../assets/images/config/btn-closed.png"
-                    alt=""
-                  />
+                <div class="device-item">
+                  <div class="device-state">
+                    <span>过滤器</span>
+                    <strong v-if="swtchInfo.reusePumpOperation3">运行</strong>
+                    <strong v-else>停机</strong>
+                    <img
+                      v-if="swtchInfo.reusePumpOperation3"
+                      src="../assets/images/config/btn2-active.gif"
+                      alt=""
+                    />
+                    <img
+                      v-else
+                      src="../assets/images/config/btn-closed.png"
+                      alt=""
+                    />
+                  </div>
+                  <div class="device-state">
+                    <span>消毒灯</span>
+                    <strong v-if="swtchInfo.reusePumpOperation7">运行</strong>
+                    <strong v-else>停机</strong>
+                    <img
+                      v-if="swtchInfo.reusePumpOperation7"
+                      src="../assets/images/config/btn2-active.gif"
+                      alt=""
+                    />
+                    <img
+                      v-else
+                      src="../assets/images/config/btn-closed.png"
+                      alt=""
+                    />
+                  </div>
+                  <div class="device-state">
+                    <span>过滤阀</span>
+                    <strong class="error" v-if="swtchInfo.error12">故障</strong>
+                    <strong v-else-if="swtchInfo.reusePumpOperation12"
+                      >开位</strong
+                    >
+                    <strong v-else-if="swtchInfo.reusePumpOperation13"
+                      >关位</strong
+                    >
+                    <img
+                      v-if="swtchInfo.reusePumpOperation12"
+                      src="../assets/images/config/btn2-active.gif"
+                      alt=""
+                    />
+                    <img
+                      v-else
+                      src="../assets/images/config/btn-closed.png"
+                      alt=""
+                    />
+                  </div>
+
+                  <div class="device-state">
+                    <span>补水阀</span>
+                    <strong class="error" v-if="swtchInfo.error3">故障</strong>
+                    <strong v-else-if="swtchInfo.reusePumpOperation4"
+                      >开位</strong
+                    >
+                    <strong v-else-if="swtchInfo.reusePumpOperation5"
+                      >关位</strong
+                    >
+                    <img
+                      v-if="swtchInfo.reusePumpOperation4"
+                      src="../assets/images/config/btn2-active.gif"
+                      alt=""
+                    />
+                    <img
+                      v-else
+                      src="../assets/images/config/btn-closed.png"
+                      alt=""
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -433,8 +427,43 @@
             <div class="right">
               <h5>设备状态</h5>
               <div class="device-status">
-                <i></i>
-              </div>
+                  <div class="img-box">
+                    <img
+                      src="../../src/assets/images/display/bg-info05.png"
+                      alt=""
+                    />
+                    <i></i>
+                  </div>
+                  <div class="status-info">
+                    <div class="status-item">
+                      <h6>
+                        <img
+                          src="../../src/assets/images/display/bg-info06.png"
+                          alt=""
+                        />出场编号
+                      </h6>
+                      <p>#000025</p>
+                    </div>
+                    <div class="status-item">
+                      <h6>
+                        <img
+                          src="../../src/assets/images/display/bg-info06.png"
+                          alt=""
+                        />启用时间
+                      </h6>
+                      <p>2022年11月10日</p>
+                    </div>
+                    <div class="status-item">
+                      <h6>
+                        <img
+                          src="../../src/assets/images/display/bg-info06.png"
+                          alt=""
+                        />累计同行时长（小时）
+                      </h6>
+                      <p>1125</p>
+                    </div>
+                  </div>
+                </div>
             </div>
           </div>
         </div>
@@ -523,23 +552,40 @@
                   >停止</i
                 >
               </div>
-              <div>
-                <p v-if="swtchInfo.reusePumpOperation">运行</p>
-                <p class="error" v-else-if="swtchInfo.error1">故障</p>
-                <p v-else>停机</p>
-                <img
-                  v-if="swtchInfo.reusePumpOperation"
-                  src="../assets/images/config/btn2-active.gif"
-                  alt=""
-                />
-                <img
-                  v-else
-                  src="../assets/images/config/btn-closed.png"
-                  alt=""
-                />
+              <div class="flex">
+                <div>
+                  <p v-if="swtchInfo.reusePumpOperation">运行</p>
+                  <p class="error" v-else-if="swtchInfo.error1">故障</p>
+                  <p v-else>1#停机</p>
+                  <img
+                    v-if="swtchInfo.reusePumpOperation"
+                    src="../assets/images/config/btn2-active.gif"
+                    alt=""
+                  />
+                  <img
+                    v-else
+                    src="../assets/images/config/btn-closed.png"
+                    alt=""
+                  />
+                </div>
+                <div>
+                  <p v-if="swtchInfo.reusePumpOperation0">运行</p>
+                  <p class="error" v-else-if="swtchInfo.error0">故障</p>
+                  <p v-else>2#停机</p>
+                  <img
+                    v-if="swtchInfo.reusePumpOperation0"
+                    src="../assets/images/config/btn2-active.gif"
+                    alt=""
+                  />
+                  <img
+                    v-else
+                    src="../assets/images/config/btn-closed.png"
+                    alt=""
+                  />
+                </div>
               </div>
             </div>
-            <div class="config-item">
+            <div class="config-item" v-if="false">
               <h6 class="opacity">回用泵2</h6>
               <div v-show="isShowBtns" class="opacity">
                 <i
@@ -557,7 +603,7 @@
               <div>
                 <p v-if="swtchInfo.reusePumpOperation0">运行</p>
                 <p class="error" v-else-if="swtchInfo.error0">故障</p>
-                <p v-else>停机</p>
+                <p v-else>2#停机</p>
                 <img
                   v-if="swtchInfo.reusePumpOperation0"
                   src="../assets/images/config/btn2-active.gif"
@@ -1032,6 +1078,7 @@
     >
       <div class="password-box">
         <el-input
+          type="number"
           width="300px"
           placeholder="请输入密码"
           v-model="password"
@@ -1309,7 +1356,7 @@ export default {
           that.swtchInfo.error0 =
             response.data["V1004.4"] === "1" ? true : false;
 
-          // 提升泵
+          // 清水池提升泵
           that.swtchInfo.reusePumpOperation8 =
             response.data["V1004.5"] === "1" ? true : false;
           that.swtchInfo.error8 =
@@ -1399,9 +1446,9 @@ export default {
           that.frequencyVlue = response.data["VW1038"];
 
           // 年雨水利用量
-          that.swtchInfo.yearTotalRain = response.data["VD1024"];
+          that.swtchInfo.yearTotalRain = response.data["VD1052"];
           // 累计雨水利用量
-          that.swtchInfo.yearTotalUsed = response.data["VD1028"];
+          that.swtchInfo.yearTotalUsed = response.data["VD1056"];
         }
       });
     },
@@ -1493,8 +1540,8 @@ export default {
       if (this.password === "1234") {
         this.dialogAccessVisible = false;
         this.loginInfo.status = status;
-        this.addTimeoutTken();
         this.password = "";
+        this.clearTimeoutToken();
       } else {
         this.$message({
           message: "密码错误，请重新输入！",
@@ -1608,7 +1655,6 @@ export default {
     // 去配置页
     goToConfig() {
       this.loginInfo.status = 4;
-      this.addTimeoutTken();
       this.getInfo();
       this.configTimerToken = setInterval(() => {
         this.getInfo();
@@ -1616,7 +1662,6 @@ export default {
     },
     // 写入数据
     remoteWriting(tag, val) {
-      this.addTimeoutTken();
       if (tag === "V1000.0" && val === 1) {
         this.isShowBtns = false;
       } else if (tag === "V1000.0" && val === 0) {
