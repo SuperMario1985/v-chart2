@@ -18,7 +18,7 @@
             </p>
           </div>
           <div class="p2">
-            <h5>北京 大兴</h5>
+            <h5>西安市 未央区</h5>
             <h6 v-if="nowWeatherInfo">{{ nowWeatherInfo.text }}</h6>
             <p v-if="threeDaysWeatherInfo">
               {{ threeDaysWeatherInfo[0].tempMin }}~{{
@@ -134,9 +134,9 @@
             <div class="top">
               <h5>液位显示</h5>
               <div class="liquid-info" v-if="swtchInfo">
-                <span>调蓄池液位：{{ swtchInfo.liquidLevel }}</span>
-                <span>清水池液位：{{ swtchInfo.liquidLevel2 }}</span>
-                <span>涌泉池液位：{{ swtchInfo.liquidLevel3 }}</span>
+                <span>调蓄池液位：{{ swtchInfo.liquidLevel || 0 }}米</span>
+                <span>清水池液位：{{ swtchInfo.liquidLevel2 || 0 }}米</span>
+                <span>涌泉池液位：{{ swtchInfo.liquidLevel3 || 0 }}米</span>
               </div>
             </div>
             <div class="center">
@@ -265,7 +265,7 @@
               </div>
             </div>
             <div class="right">
-              <h5>设别设施状态</h5>
+              <h5>设备设施状态</h5>
               <div class="device-box">
                 <div class="device-item">
                   <div class="device-state">
@@ -554,8 +554,8 @@
               </div>
               <div class="flex">
                 <div>
-                  <p v-if="swtchInfo.reusePumpOperation">运行</p>
-                  <p class="error" v-else-if="swtchInfo.error1">故障</p>
+                  <p v-if="swtchInfo.reusePumpOperation">1#运行</p>
+                  <p class="error" v-else-if="swtchInfo.error1">1#故障</p>
                   <p v-else>1#停机</p>
                   <img
                     v-if="swtchInfo.reusePumpOperation"
@@ -569,8 +569,8 @@
                   />
                 </div>
                 <div>
-                  <p v-if="swtchInfo.reusePumpOperation0">运行</p>
-                  <p class="error" v-else-if="swtchInfo.error0">故障</p>
+                  <p v-if="swtchInfo.reusePumpOperation0">2#运行</p>
+                  <p class="error" v-else-if="swtchInfo.error0">2#故障</p>
                   <p v-else>2#停机</p>
                   <img
                     v-if="swtchInfo.reusePumpOperation0"
@@ -1417,17 +1417,19 @@ export default {
           that.swtchInfo.flow = response.data["VD1012"];
 
           // 调蓄池
-          that.swtchInfo.liquidLevel = response.data["VD1020"];
+          that.swtchInfo.liquidLevel = response.data["VD1008"];
+          let test = response.data["VD1020"];
           that.chartData.rows[0].percent =
-            Number(that.swtchInfo.liquidLevel) / 5;
+            Number(test) / 5;
           that.swtchInfo.frequency = response.data["VD1008"];
           that.swtchInfo.liquidDown = response.data["VD904"];
           that.swtchInfo.liquidUp = response.data["VD900"];
 
           // 清水池
-          that.swtchInfo.liquidLevel2 = response.data["VD1024"];
+          that.swtchInfo.liquidLevel2 = response.data["VD1012"];
+          let test2 = response.data["VD1024"];
           that.chartData2.rows[0].percent =
-            Number(that.swtchInfo.liquidLevel2) / 5;
+            Number(test2) / 5;
           that.swtchInfo.frequency2 = response.data["VD1012"];
 
           that.swtchInfo.liquidDown2 = response.data["VD912"];
