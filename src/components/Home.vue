@@ -1159,7 +1159,7 @@ export default {
             label: {
               formatter(options) {
                 const { seriesName, value } = options;
-                return `${(value * 5 * 52).toFixed(1)}m³`;
+                return `${(value * 108).toFixed(1)}m³`;
               },
               fontSize: 15,
               color: "green",
@@ -1199,7 +1199,7 @@ export default {
             label: {
               formatter(options) {
                 const { seriesName, value } = options;
-                return `${(value * 5 * 52).toFixed(1)}m³`;
+                return `${(value * 6.75).toFixed(1)}m³`;
               },
               fontSize: 15,
               color: "green",
@@ -1420,7 +1420,7 @@ export default {
           that.swtchInfo.liquidLevel = response.data["VD1008"];
           let test = response.data["VD1020"];
           that.chartData.rows[0].percent =
-            Number(test) / 5;
+            Number(testl) / 108;
           that.swtchInfo.frequency = response.data["VD1008"];
           that.swtchInfo.liquidDown = response.data["VD904"];
           that.swtchInfo.liquidUp = response.data["VD900"];
@@ -1429,7 +1429,7 @@ export default {
           that.swtchInfo.liquidLevel2 = response.data["VD1012"];
           let test2 = response.data["VD1024"];
           that.chartData2.rows[0].percent =
-            Number(test2) / 5;
+            Number(test2) / 6.75;
           that.swtchInfo.frequency2 = response.data["VD1012"];
 
           that.swtchInfo.liquidDown2 = response.data["VD912"];
