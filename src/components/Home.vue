@@ -1420,7 +1420,7 @@ export default {
           that.swtchInfo.liquidLevel = response.data["VD1008"];
           let test = response.data["VD1020"];
           that.chartData.rows[0].percent =
-            Number(testl) / 108;
+            Number(test) / 108;
           that.swtchInfo.frequency = response.data["VD1008"];
           that.swtchInfo.liquidDown = response.data["VD904"];
           that.swtchInfo.liquidUp = response.data["VD900"];
