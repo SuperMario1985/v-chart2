@@ -249,7 +249,7 @@
                     <p>年雨水利用量:</p>
                     <strong>
                       <i>{{ swtchInfo.yearTotalRain }}</i>
-                      <span>M</span>
+                      <span>m³</span>
                     </strong>
                   </div>
                 </div>
@@ -258,7 +258,7 @@
                     <p>累计雨水利用量:</p>
                     <strong>
                       <i>{{ swtchInfo.yearTotalUsed }}</i>
-                      <span>M</span>
+                      <span>m³</span>
                     </strong>
                   </div>
                 </div>
@@ -427,43 +427,43 @@
             <div class="right">
               <h5>设备状态</h5>
               <div class="device-status">
-                  <div class="img-box">
-                    <img
-                      src="../../src/assets/images/display/bg-info05.png"
-                      alt=""
-                    />
-                    <i></i>
+                <div class="img-box">
+                  <img
+                    src="../../src/assets/images/display/bg-info05.png"
+                    alt=""
+                  />
+                  <i></i>
+                </div>
+                <div class="status-info">
+                  <div class="status-item">
+                    <h6>
+                      <img
+                        src="../../src/assets/images/display/bg-info06.png"
+                        alt=""
+                      />出场编号
+                    </h6>
+                    <p>#000025</p>
                   </div>
-                  <div class="status-info">
-                    <div class="status-item">
-                      <h6>
-                        <img
-                          src="../../src/assets/images/display/bg-info06.png"
-                          alt=""
-                        />出场编号
-                      </h6>
-                      <p>#000025</p>
-                    </div>
-                    <div class="status-item">
-                      <h6>
-                        <img
-                          src="../../src/assets/images/display/bg-info06.png"
-                          alt=""
-                        />启用时间
-                      </h6>
-                      <p>2022年11月10日</p>
-                    </div>
-                    <div class="status-item">
-                      <h6>
-                        <img
-                          src="../../src/assets/images/display/bg-info06.png"
-                          alt=""
-                        />累计同行时长（小时）
-                      </h6>
-                      <p>1125</p>
-                    </div>
+                  <div class="status-item">
+                    <h6>
+                      <img
+                        src="../../src/assets/images/display/bg-info06.png"
+                        alt=""
+                      />启用时间
+                    </h6>
+                    <p>2022年11月10日</p>
+                  </div>
+                  <div class="status-item">
+                    <h6>
+                      <img
+                        src="../../src/assets/images/display/bg-info06.png"
+                        alt=""
+                      />累计同行时长（小时）
+                    </h6>
+                    <p>1125</p>
                   </div>
                 </div>
+              </div>
             </div>
           </div>
         </div>
@@ -1419,8 +1419,7 @@ export default {
           // 调蓄池
           that.swtchInfo.liquidLevel = response.data["VD1008"];
           let test = response.data["VD1020"];
-          that.chartData.rows[0].percent =
-            Number(test) / 108;
+          that.chartData.rows[0].percent = Number(test) / 108;
           that.swtchInfo.frequency = response.data["VD1008"];
           that.swtchInfo.liquidDown = response.data["VD904"];
           that.swtchInfo.liquidUp = response.data["VD900"];
@@ -1428,8 +1427,7 @@ export default {
           // 清水池
           that.swtchInfo.liquidLevel2 = response.data["VD1012"];
           let test2 = response.data["VD1024"];
-          that.chartData2.rows[0].percent =
-            Number(test2) / 6.75;
+          that.chartData2.rows[0].percent = Number(test2) / 6.75;
           that.swtchInfo.frequency2 = response.data["VD1012"];
 
           that.swtchInfo.liquidDown2 = response.data["VD912"];
